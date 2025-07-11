@@ -34,4 +34,7 @@ android {
 
 dependencies {
     implementation(libs.timber)
+
+    implementation(projects.core.data)
+    implementation(projects.core.database)
 }
