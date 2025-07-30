@@ -1,24 +1,16 @@
 plugins {
+    alias(libs.plugins.runique.android.application.compose)
     alias(libs.plugins.mapsplatform.secrets.plugin)
-    alias(libs.plugins.runique.android.application)
 }
 
 android {
     namespace = "com.plcoding.runique"
-    compileSdk = 34
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
-    }
-    
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
     }
     packaging {
         resources {
