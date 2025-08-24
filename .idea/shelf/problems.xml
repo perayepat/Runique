@@ -1,0 +1,24 @@
+<changelist name="problems" date="1754359457606" recycled="false">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/problems/shelved.patch" />
+  <option name="DESCRIPTION" value="problems" />
+  <binary>
+    <option name="AFTER_PATH" value="core/presentation/designsystem/src/main/res/font/poppins_bold.ttf" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/problems/poppins_bold.ttf" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="core/presentation/designsystem/src/main/res/font/poppins_light.ttf" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/problems/poppins_light.ttf" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="core/presentation/designsystem/src/main/res/font/poppins_medium.ttf" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/problems/poppins_medium.ttf" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="core/presentation/designsystem/src/main/res/font/poppins_regular.ttf" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/problems/poppins_regular.ttf" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="core/presentation/designsystem/src/main/res/font/poppins_semibold.ttf" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/problems/poppins_semibold.ttf" />
+  </binary>
+</changelist>

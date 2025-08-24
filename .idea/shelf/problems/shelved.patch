@@ -1,0 +1,446 @@
+Index: app/src/main/java/com/plcoding/runique/ui/theme/Color.kt
+===================================================================
+diff --git a/app/src/main/java/com/plcoding/runique/ui/theme/Color.kt b/app/src/main/java/com/plcoding/runique/ui/theme/Color.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/plcoding/runique/ui/theme/Color.kt	(revision 3b087813b8bd8ddcbaa534106ff6505b455b2171)
++++ /dev/null	(revision 3b087813b8bd8ddcbaa534106ff6505b455b2171)
+@@ -1,11 +0,0 @@
+-package com.plcoding.runique.ui.theme
+-
+-import androidx.compose.ui.graphics.Color
+-
+-val Purple80 = Color(0xFFD0BCFF)
+-val PurpleGrey80 = Color(0xFFCCC2DC)
+-val Pink80 = Color(0xFFEFB8C8)
+-
+-val Purple40 = Color(0xFF6650a4)
+-val PurpleGrey40 = Color(0xFF625b71)
+-val Pink40 = Color(0xFF7D5260)
+\ No newline at end of file
+Index: app/src/main/java/com/plcoding/runique/ui/theme/Theme.kt
+===================================================================
+diff --git a/app/src/main/java/com/plcoding/runique/ui/theme/Theme.kt b/app/src/main/java/com/plcoding/runique/ui/theme/Theme.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/plcoding/runique/ui/theme/Theme.kt	(revision 3b087813b8bd8ddcbaa534106ff6505b455b2171)
++++ /dev/null	(revision 3b087813b8bd8ddcbaa534106ff6505b455b2171)
+@@ -1,70 +0,0 @@
+-package com.plcoding.runique.ui.theme
+-
+-import android.app.Activity
+-import android.os.Build
+-import androidx.compose.foundation.isSystemInDarkTheme
+-import androidx.compose.material3.MaterialTheme
+-import androidx.compose.material3.darkColorScheme
+-import androidx.compose.material3.dynamicDarkColorScheme
+-import androidx.compose.material3.dynamicLightColorScheme
+-import androidx.compose.material3.lightColorScheme
+-import androidx.compose.runtime.Composable
+-import androidx.compose.runtime.SideEffect
+-import androidx.compose.ui.graphics.toArgb
+-import androidx.compose.ui.platform.LocalContext
+-import androidx.compose.ui.platform.LocalView
+-import androidx.core.view.WindowCompat
+-
+-private val DarkColorScheme = darkColorScheme(
+-    primary = Purple80,
+-    secondary = PurpleGrey80,
+-    tertiary = Pink80
+-)
+-
+-private val LightColorScheme = lightColorScheme(
+-    primary = Purple40,
+-    secondary = PurpleGrey40,
+-    tertiary = Pink40
+-
+-    /* Other default colors to override
+-    background = Color(0xFFFFFBFE),
+-    surface = Color(0xFFFFFBFE),
+-    onPrimary = Color.White,
+-    onSecondary = Color.White,
+-    onTertiary = Color.White,
+-    onBackground = Color(0xFF1C1B1F),
+-    onSurface = Color(0xFF1C1B1F),
+-    */
+-)
+-
+-@Composable
+-fun RuniqueTheme(
+-    darkTheme: Boolean = isSystemInDarkTheme(),
+-    // Dynamic color is available on Android 12+
+-    dynamicColor: Boolean = true,
+-    content: @Composable () -> Unit
+-) {
+-    val colorScheme = when {
+-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+-            val context = LocalContext.current
+-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+-        }
+-
+-        darkTheme -> DarkColorScheme
+-        else -> LightColorScheme
+-    }
+-    val view = LocalView.current
+-    if (!view.isInEditMode) {
+-        SideEffect {
+-            val window = (view.context as Activity).window
+-            window.statusBarColor = colorScheme.primary.toArgb()
+-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+-        }
+-    }
+-
+-    MaterialTheme(
+-        colorScheme = colorScheme,
+-        typography = Typography,
+-        content = content
+-    )
+-}
+\ No newline at end of file
+Index: app/src/main/java/com/plcoding/runique/ui/theme/Type.kt
+===================================================================
+diff --git a/app/src/main/java/com/plcoding/runique/ui/theme/Type.kt b/app/src/main/java/com/plcoding/runique/ui/theme/Type.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/plcoding/runique/ui/theme/Type.kt	(revision 3b087813b8bd8ddcbaa534106ff6505b455b2171)
++++ /dev/null	(revision 3b087813b8bd8ddcbaa534106ff6505b455b2171)
+@@ -1,34 +0,0 @@
+-package com.plcoding.runique.ui.theme
+-
+-import androidx.compose.material3.Typography
+-import androidx.compose.ui.text.TextStyle
+-import androidx.compose.ui.text.font.FontFamily
+-import androidx.compose.ui.text.font.FontWeight
+-import androidx.compose.ui.unit.sp
+-
+-// Set of Material typography styles to start with
+-val Typography = Typography(
+-    bodyLarge = TextStyle(
+-        fontFamily = FontFamily.Default,
+-        fontWeight = FontWeight.Normal,
+-        fontSize = 16.sp,
+-        lineHeight = 24.sp,
+-        letterSpacing = 0.5.sp
+-    )
+-    /* Other default text styles to override
+-    titleLarge = TextStyle(
+-        fontFamily = FontFamily.Default,
+-        fontWeight = FontWeight.Normal,
+-        fontSize = 22.sp,
+-        lineHeight = 28.sp,
+-        letterSpacing = 0.sp
+-    ),
+-    labelSmall = TextStyle(
+-        fontFamily = FontFamily.Default,
+-        fontWeight = FontWeight.Medium,
+-        fontSize = 11.sp,
+-        lineHeight = 16.sp,
+-        letterSpacing = 0.5.sp
+-    )
+-    */
+-)
+\ No newline at end of file
+Index: app/src/main/java/com/plcoding/runique/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.plcoding.runique\n\nimport android.os.Bundle\nimport androidx.activity.ComponentActivity\nimport androidx.activity.compose.setContent\nimport androidx.compose.foundation.layout.fillMaxSize\nimport androidx.compose.material3.MaterialTheme\nimport androidx.compose.material3.Surface\nimport androidx.compose.material3.Text\nimport androidx.compose.runtime.Composable\nimport androidx.compose.ui.Modifier\nimport androidx.compose.ui.tooling.preview.Preview\nimport com.plcoding.runique.ui.theme.RuniqueTheme\n\nclass MainActivity : ComponentActivity() {\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        setContent {\n            RuniqueTheme {\n                // A surface container using the 'background' color from the theme\n                Surface(\n                    modifier = Modifier.fillMaxSize(),\n                    color = MaterialTheme.colorScheme.background\n                ) {\n                    Greeting(\"Android\")\n                }\n            }\n        }\n    }\n}\n\n@Composable\nfun Greeting(name: String, modifier: Modifier = Modifier) {\n    Text(\n        text = \"Hello $name!\",\n        modifier = modifier\n    )\n}\n\n@Preview(showBackground = true)\n@Composable\nfun GreetingPreview() {\n    RuniqueTheme {\n        Greeting(\"Android\")\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/plcoding/runique/MainActivity.kt b/app/src/main/java/com/plcoding/runique/MainActivity.kt
+--- a/app/src/main/java/com/plcoding/runique/MainActivity.kt	(revision 3b087813b8bd8ddcbaa534106ff6505b455b2171)
++++ b/app/src/main/java/com/plcoding/runique/MainActivity.kt	(date 1754356323112)
+@@ -10,7 +10,7 @@
+ import androidx.compose.runtime.Composable
+ import androidx.compose.ui.Modifier
+ import androidx.compose.ui.tooling.preview.Preview
+-import com.plcoding.runique.ui.theme.RuniqueTheme
++import com.example.core.presentation.designsystem.RuniqueTheme
+ 
+ class MainActivity : ComponentActivity() {
+     override fun onCreate(savedInstanceState: Bundle?) {
+Index: .idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><component name=\"InspectionProjectProfileManager\">\n  <profile version=\"1.0\">\n    <option name=\"myName\" value=\"Project Default\" />\n    <inspection_tool class=\"ComposePreviewDimensionRespectsLimit\" enabled=\"true\" level=\"WARNING\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n    <inspection_tool class=\"ComposePreviewMustBeTopLevelFunction\" enabled=\"true\" level=\"ERROR\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n    <inspection_tool class=\"ComposePreviewNeedsComposableAnnotation\" enabled=\"true\" level=\"ERROR\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n    <inspection_tool class=\"ComposePreviewNotSupportedInUnitTestFiles\" enabled=\"true\" level=\"ERROR\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n    <inspection_tool class=\"GlancePreviewDimensionRespectsLimit\" enabled=\"true\" level=\"WARNING\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n    <inspection_tool class=\"GlancePreviewMustBeTopLevelFunction\" enabled=\"true\" level=\"ERROR\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n    <inspection_tool class=\"GlancePreviewNeedsComposableAnnotation\" enabled=\"true\" level=\"ERROR\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n    <inspection_tool class=\"GlancePreviewNotSupportedInUnitTestFiles\" enabled=\"true\" level=\"ERROR\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n    <inspection_tool class=\"PreviewAnnotationInFunctionWithParameters\" enabled=\"true\" level=\"ERROR\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n    <inspection_tool class=\"PreviewApiLevelMustBeValid\" enabled=\"true\" level=\"ERROR\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n    <inspection_tool class=\"PreviewDeviceShouldUseNewSpec\" enabled=\"true\" level=\"WEAK WARNING\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n    <inspection_tool class=\"PreviewFontScaleMustBeGreaterThanZero\" enabled=\"true\" level=\"ERROR\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n    <inspection_tool class=\"PreviewMultipleParameterProviders\" enabled=\"true\" level=\"ERROR\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n    <inspection_tool class=\"PreviewParameterProviderOnFirstParameter\" enabled=\"true\" level=\"ERROR\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n    <inspection_tool class=\"PreviewPickerAnnotation\" enabled=\"true\" level=\"ERROR\" enabled_by_default=\"true\">\n      <option name=\"composableFile\" value=\"true\" />\n    </inspection_tool>\n  </profile>\n</component>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+--- a/.idea/inspectionProfiles/Project_Default.xml	(revision 3b087813b8bd8ddcbaa534106ff6505b455b2171)
++++ b/.idea/inspectionProfiles/Project_Default.xml	(date 1754356328021)
+@@ -3,15 +3,19 @@
+     <option name="myName" value="Project Default" />
+     <inspection_tool class="ComposePreviewDimensionRespectsLimit" enabled="true" level="WARNING" enabled_by_default="true">
+       <option name="composableFile" value="true" />
++      <option name="previewFile" value="true" />
+     </inspection_tool>
+     <inspection_tool class="ComposePreviewMustBeTopLevelFunction" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
++      <option name="previewFile" value="true" />
+     </inspection_tool>
+     <inspection_tool class="ComposePreviewNeedsComposableAnnotation" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
++      <option name="previewFile" value="true" />
+     </inspection_tool>
+     <inspection_tool class="ComposePreviewNotSupportedInUnitTestFiles" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
++      <option name="previewFile" value="true" />
+     </inspection_tool>
+     <inspection_tool class="GlancePreviewDimensionRespectsLimit" enabled="true" level="WARNING" enabled_by_default="true">
+       <option name="composableFile" value="true" />
+@@ -27,24 +31,31 @@
+     </inspection_tool>
+     <inspection_tool class="PreviewAnnotationInFunctionWithParameters" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
++      <option name="previewFile" value="true" />
+     </inspection_tool>
+     <inspection_tool class="PreviewApiLevelMustBeValid" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
++      <option name="previewFile" value="true" />
+     </inspection_tool>
+     <inspection_tool class="PreviewDeviceShouldUseNewSpec" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+       <option name="composableFile" value="true" />
++      <option name="previewFile" value="true" />
+     </inspection_tool>
+     <inspection_tool class="PreviewFontScaleMustBeGreaterThanZero" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
++      <option name="previewFile" value="true" />
+     </inspection_tool>
+     <inspection_tool class="PreviewMultipleParameterProviders" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
++      <option name="previewFile" value="true" />
+     </inspection_tool>
+     <inspection_tool class="PreviewParameterProviderOnFirstParameter" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
++      <option name="previewFile" value="true" />
+     </inspection_tool>
+     <inspection_tool class="PreviewPickerAnnotation" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
++      <option name="previewFile" value="true" />
+     </inspection_tool>
+   </profile>
+ </component>
+\ No newline at end of file
+Index: core/presentation/designsystem/src/main/java/com/example/core/presentation/designsystem/Type.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/presentation/designsystem/src/main/java/com/example/core/presentation/designsystem/Type.kt b/core/presentation/designsystem/src/main/java/com/example/core/presentation/designsystem/Type.kt
+new file mode 100644
+--- /dev/null	(date 1754356234739)
++++ b/core/presentation/designsystem/src/main/java/com/example/core/presentation/designsystem/Type.kt	(date 1754356234739)
+@@ -0,0 +1,66 @@
++package com.example.core.presentation.designsystem
++
++import androidx.compose.material3.Typography
++import androidx.compose.ui.text.TextStyle
++import androidx.compose.ui.text.font.Font
++import androidx.compose.ui.text.font.FontFamily
++import androidx.compose.ui.text.font.FontWeight
++import androidx.compose.ui.unit.sp
++
++val Poppins = FontFamily(
++    Font(
++        resId = R.font.poppins_light,
++        weight = FontWeight.Light
++    ),
++    Font(
++        resId = R.font.poppins_regular,
++        weight = FontWeight.Normal
++    ),
++    Font(
++        resId = R.font.poppins_medium,
++        weight = FontWeight.Medium
++    ),
++    Font(
++        resId = R.font.poppins_semibold,
++        weight = FontWeight.SemiBold
++    ),
++    Font(
++        resId = R.font.poppins_bold,
++        weight = FontWeight.Bold
++    ),
++)
++
++val Typography = Typography(
++    bodySmall = TextStyle(
++        fontFamily = Poppins,
++        fontWeight = FontWeight.Normal,
++        fontSize = 12.sp,
++        lineHeight = 20.sp,
++        color = RuniqueGray
++    ),
++    bodyMedium = TextStyle(
++        fontFamily = Poppins,
++        fontWeight = FontWeight.Normal,
++        fontSize = 14.sp,
++        lineHeight = 22.sp,
++    ),
++    bodyLarge = TextStyle(
++        fontFamily = Poppins,
++        fontWeight = FontWeight.Normal,
++        fontSize = 16.sp,
++        lineHeight = 24.sp,
++        letterSpacing = 0.4.sp
++    ),
++    labelLarge = TextStyle(
++        fontFamily = Poppins,
++        fontWeight = FontWeight.Normal,
++        fontSize = 14.sp,
++        lineHeight = 24.sp,
++    ),
++    headlineMedium = TextStyle(
++        fontFamily = Poppins,
++        fontWeight = FontWeight.SemiBold,
++        fontSize = 24.sp,
++        color = RuniqueWhite
++    ),
++)
+\ No newline at end of file
+Index: run/location/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    alias(libs.plugins.runique.android.library)\n}\n\nandroid {\n    namespace = \"com.example.run.location\"\n}\n\ndependencies {\n    implementation(libs.androidx.core.ktx)\n\n    implementation(libs.androidx.compose.ui)\n    implementation(libs.androidx.compose.ui.tooling.preview)\n    implementation(libs.androidx.compose.ui.graphics)\n    implementation(libs.androidx.compose.material3)\n    implementation(libs.androidx.compose.ui.tooling)\n\n    implementation(libs.kotlinx.coroutines.core)\n    implementation(libs.google.android.gms.play.services.location)\n\n    implementation(projects.core.domain)\n    implementation(projects.run.domain)\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/run/location/build.gradle.kts b/run/location/build.gradle.kts
+--- a/run/location/build.gradle.kts	(revision 3b087813b8bd8ddcbaa534106ff6505b455b2171)
++++ b/run/location/build.gradle.kts	(date 1754356639959)
+@@ -9,12 +9,6 @@
+ dependencies {
+     implementation(libs.androidx.core.ktx)
+ 
+-    implementation(libs.androidx.compose.ui)
+-    implementation(libs.androidx.compose.ui.tooling.preview)
+-    implementation(libs.androidx.compose.ui.graphics)
+-    implementation(libs.androidx.compose.material3)
+-    implementation(libs.androidx.compose.ui.tooling)
+-
+     implementation(libs.kotlinx.coroutines.core)
+     implementation(libs.google.android.gms.play.services.location)
+ 
+Index: core/data/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    alias(libs.plugins.runique.android.library)\n    alias(libs.plugins.runique.jvm.ktor)\n}\n\nandroid {\n    namespace = \"com.example.core.data\"\n}\n\ndependencies {\n    implementation(libs.timber)\n\n    implementation(projects.core.data)\n    implementation(projects.core.database)\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/data/build.gradle.kts b/core/data/build.gradle.kts
+--- a/core/data/build.gradle.kts	(revision 3b087813b8bd8ddcbaa534106ff6505b455b2171)
++++ b/core/data/build.gradle.kts	(date 1754356542748)
+@@ -10,6 +10,6 @@
+ dependencies {
+     implementation(libs.timber)
+ 
+-    implementation(projects.core.data)
++    implementation(projects.core.domain)
+     implementation(projects.core.database)
+ }
+\ No newline at end of file
+Index: core/presentation/designsystem/src/main/java/com/example/core/presentation/designsystem/Theme.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/presentation/designsystem/src/main/java/com/example/core/presentation/designsystem/Theme.kt b/core/presentation/designsystem/src/main/java/com/example/core/presentation/designsystem/Theme.kt
+new file mode 100644
+--- /dev/null	(date 1754356254506)
++++ b/core/presentation/designsystem/src/main/java/com/example/core/presentation/designsystem/Theme.kt	(date 1754356254506)
+@@ -0,0 +1,43 @@
++package com.example.core.presentation.designsystem
++
++import android.app.Activity
++import androidx.compose.material3.MaterialTheme
++import androidx.compose.material3.MaterialTheme.typography
++import androidx.compose.material3.darkColorScheme
++import androidx.compose.runtime.Composable
++import androidx.compose.runtime.SideEffect
++import androidx.compose.ui.graphics.toArgb
++import androidx.compose.ui.platform.LocalView
++import androidx.core.view.WindowCompat
++
++val DarkColorScheme = darkColorScheme(
++    primary = RuniqueGreen,
++    background = RuniqueBlack,
++    surface = RuniqueDarkGray,
++    secondary = RuniqueWhite,
++    tertiary = RuniqueWhite,
++    primaryContainer = RuniqueGreen30,
++    onPrimary = RuniqueBlack,
++    onBackground = RuniqueWhite,
++    onSurface = RuniqueWhite,
++    onSurfaceVariant = RuniqueGray
++)
++
++@Composable
++fun RuniqueTheme(
++    content: @Composable () -> Unit
++) {
++    val colorScheme = DarkColorScheme
++    val view = LocalView.current
++    if (!view.isInEditMode) {
++        SideEffect {
++            val window = (view.context as Activity).window
++            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
++        }
++    }
++    MaterialTheme(
++        colorScheme = colorScheme,
++        typography = typography,
++        content = content
++    )
++}
+\ No newline at end of file
+Index: gradle/libs.versions.toml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[versions]\nagp = \"8.2.2\"\nandroidTools = \"31.2.2\"\ncore = \"1.10.3\"\nplayCore = \"1.10.3\"\ncoreSplashscreen = \"1.0.1\"\ncoilCompose = \"2.6.0\"\ncomposeCompiler = \"1.5.9\"\ndesugar_jdk_libs = \"2.0.4\"\nkotlin = \"1.9.22\"\ncoreKtx = \"1.12.0\"\njunit = \"4.13.2\"\njunitVersion = \"1.1.5\"\nespressoCore = \"3.5.1\"\nactivityCompose = \"1.8.2\"\nktor = \"2.3.8\"\nktorClientLogging = \"2.3.8\"\nktorServerCallLogging = \"2.3.7\"\nkoin = \"3.5.3\"\nlifecycleRuntimeKtx = \"2.7.0\"\ncomposeBom = \"2024.02.02\"\nmaterialIconsExtended = \"1.6.3\"\nnavigationCompose = \"2.7.7\"\nsecurityCryptoKtx = \"1.1.0-alpha06\"\ntimber = \"5.0.1\"\nksp = \"1.9.22-1.0.17\"\nroom = \"2.6.1\"\nappcompat = \"1.6.1\"\nmaterial = \"1.11.0\"\norg-jetbrains-kotlin-jvm = \"1.9.22\"\nmaps = \"4.3.3\"\ncoroutines = \"1.8.0\"\ngmsLocation = \"21.2.0\"\nmapsUtils = \"5.0.0\"\nbson = \"4.11.1\"\nwork = \"2.9.0\"\nkotlinx-serialization = \"1.6.3\"\nsecretsPlugin = \"2.0.1\"\nplayServicesMaps = \"18.2.0\"\nannotation = \"1.7.1\"\n\n# Project versions\nprojectApplicationId = \"com.plcoding.runique\"\nprojectVersionName = \"1.0\"\nprojectMinSdkVersion = \"25\"\nprojectTargetSdkVersion = \"34\"\nprojectCompileSdkVersion = \"34\"\nprojectVersionCode = \"1\"\nprojectCompileSdk = \"34\"\nprojectMinSdk = \"24\"\n\n[libraries]\nandroidx-core-ktx = { group = \"androidx.core\", name = \"core-ktx\", version.ref = \"coreKtx\" }\nandroidx-core-splashscreen = { module = \"androidx.core:core-splashscreen\", version.ref = \"coreSplashscreen\" }\nandroidx-lifecycle-runtime-compose = { module = \"androidx.lifecycle:lifecycle-runtime-compose\", version.ref = \"lifecycleRuntimeKtx\" }\nandroidx-lifecycle-viewmodel-compose = { module = \"androidx.lifecycle:lifecycle-viewmodel-compose\", version.ref = \"lifecycleRuntimeKtx\" }\nandroidx-material-icons-extended = { module = \"androidx.compose.material:material-icons-extended\", version.ref = \"materialIconsExtended\" }\nandroidx-navigation-compose = { module = \"androidx.navigation:navigation-compose\", version.ref = \"navigationCompose\" }\nandroidx-security-crypto-ktx = { module = \"androidx.security:security-crypto-ktx\", version.ref = \"securityCryptoKtx\" }\ncoil-compose = { module = \"io.coil-kt:coil-compose\", version.ref = \"coilCompose\" }\ncore = { module = \"com.google.android.play:core\", version.ref = \"playCore\" }\ncore-testing = { module = \"com.google.android.play:core-testing\", version.ref = \"playCore\" }\nkotlinx-serialization-json = { module = \"org.jetbrains.kotlinx:kotlinx-serialization-json\", version.ref = \"kotlinx-serialization\" }\nkotlinx-coroutines-core = { module = \"org.jetbrains.kotlinx:kotlinx-coroutines-core\", version.ref = \"coroutines\" }\nkotlinx-coroutines-play-services = { module = \"org.jetbrains.kotlinx:kotlinx-coroutines-play-services\", version.ref = \"coroutines\" }\ndesugar-jdk-libs = { module = \"com.android.tools:desugar_jdk_libs\", version.ref = \"desugar_jdk_libs\" }\njunit = { group = \"junit\", name = \"junit\", version.ref = \"junit\" }\nandroidx-work = { group = \"androidx.work\", name = \"work-runtime-ktx\", version.ref = \"work\" }\nandroidx-junit = { group = \"androidx.test.ext\", name = \"junit\", version.ref = \"junitVersion\" }\nandroidx-espresso-core = { group = \"androidx.test.espresso\", name = \"espresso-core\", version.ref = \"espressoCore\" }\nandroidx-lifecycle-runtime-ktx = { group = \"androidx.lifecycle\", name = \"lifecycle-runtime-ktx\", version.ref = \"lifecycleRuntimeKtx\" }\nandroidx-activity-compose = { group = \"androidx.activity\", name = \"activity-compose\", version.ref = \"activityCompose\" }\nandroidx-compose-bom = { group = \"androidx.compose\", name = \"compose-bom\", version.ref = \"composeBom\" }\nandroidx-compose-ui = { group = \"androidx.compose.ui\", name = \"ui\" }\nandroidx-compose-ui-graphics = { group = \"androidx.compose.ui\", name = \"ui-graphics\" }\nandroidx-compose-ui-tooling = { group = \"androidx.compose.ui\", name = \"ui-tooling\" }\nandroidx-compose-material3 = { group = \"androidx.compose.material3\", name = \"material3\" }\nandroidx-compose-ui-tooling-preview = { group = \"androidx.compose.ui\", name = \"ui-tooling-preview\" }\nandroidx-compose-ui-test-manifest = { group = \"androidx.compose.ui\", name = \"ui-test-manifest\" }\nandroidx-compose-ui-test-junit4 = { group = \"androidx.compose.ui\", name = \"ui-test-junit4\" }\nkoin-android-workmanager = { group = \"io.insert-koin\", name = \"koin-androidx-workmanager\", version.ref = \"koin\" }\nkoin-android = { group = \"io.insert-koin\", name = \"koin-android\", version.ref = \"koin\" }\nkoin-core = { group = \"io.insert-koin\", name = \"koin-core\", version.ref = \"koin\" }\nkoin-androidx-compose = { group = \"io.insert-koin\", name = \"koin-androidx-compose\", version.ref = \"koin\" }\nktor-client-auth = { module = \"io.ktor:ktor-client-auth\", version.ref = \"ktor\" }\nktor-client-cio = { module = \"io.ktor:ktor-client-cio\", version.ref = \"ktor\" }\nktor-client-content-negotiation = { module = \"io.ktor:ktor-client-content-negotiation\", version.ref = \"ktor\" }\nktor-client-core = { module = \"io.ktor:ktor-client-core\", version.ref = \"ktor\" }\nktor-client-logging = { module = \"io.ktor:ktor-client-logging\", version.ref = \"ktorClientLogging\" }\nktor-serialization-kotlinx-json = { module = \"io.ktor:ktor-serialization-kotlinx-json\", version.ref = \"ktor\" }\nktor-server-call-logging = { module = \"io.ktor:ktor-server-call-logging\", version.ref = \"ktorServerCallLogging\" }\nroom-compiler = { group = \"androidx.room\", name = \"room-compiler\", version.ref = \"room\" }\nroom-ktx = { group = \"androidx.room\", name = \"room-ktx\", version.ref = \"room\" }\nroom-runtime = { group = \"androidx.room\", name = \"room-runtime\", version.ref = \"room\" }\ntimber = { module = \"com.jakewharton.timber:timber\", version.ref = \"timber\" }\nappcompat = { group = \"androidx.appcompat\", name = \"appcompat\", version.ref = \"appcompat\" }\nmaterial = { group = \"com.google.android.material\", name = \"material\", version.ref = \"material\" }\ngoogle-maps-android-compose = { module = \"com.google.maps.android:maps-compose\", version.ref = \"maps\" }\ngoogle-android-gms-play-services-location = { module = \"com.google.android.gms:play-services-location\", version.ref = \"gmsLocation\" }\norg-mongodb-bson = { module = \"org.mongodb:bson\", version.ref = \"bson\" }\nplay-services-maps = { group = \"com.google.android.gms\", name = \"play-services-maps\", version.ref = \"playServicesMaps\" }\ngoogle-maps-android-utils-ktx = { module = \"com.google.maps.android:maps-utils-ktx\", version.ref = \"mapsUtils\" }\nannotation = { group = \"androidx.annotation\", name = \"annotation\", version.ref = \"annotation\" }\n\n# Gradle\nandroid-gradlePlugin = { group = \"com.android.tools.build\", name = \"gradle\", version.ref = \"agp\" }\nandroid-tools-common = { group = \"com.android.tools\", name = \"common\", version.ref = \"androidTools\" }\nkotlin-gradlePlugin = { group = \"org.jetbrains.kotlin\", name = \"kotlin-gradle-plugin\", version.ref = \"kotlin\" }\nksp-gradlePlugin = { group = \"com.google.devtools.ksp\", name = \"com.google.devtools.ksp.gradle.plugin\", version.ref = \"ksp\" }\nroom-gradlePlugin = { group = \"androidx.room\", name = \"room-gradle-plugin\", version.ref = \"room\" }\n\n[plugins]\nandroid-application = { id = \"com.android.application\", version.ref = \"agp\" }\nandroid-library = { id = \"com.android.library\", version.ref = \"agp\" }\njetbrainsKotlinAndroid = { id = \"org.jetbrains.kotlin.android\", version.ref = \"kotlin\" }\nksp = { id = \"com.google.devtools.ksp\", version.ref = \"ksp\" }\nkotlin-serialization = { id = \"org.jetbrains.kotlin.plugin.serialization\", version.ref = \"kotlin\" }\nroom = { id = \"androidx.room\", version.ref = \"room\" }\norg-jetbrains-kotlin-jvm = { id = \"org.jetbrains.kotlin.jvm\", version.ref = \"org-jetbrains-kotlin-jvm\" }\nandroidDynamicFeature = { id = \"com.android.dynamic-feature\", version.ref = \"agp\" }\nmapsplatform-secrets-plugin = { id = \"com.google.android.libraries.mapsplatform.secrets-gradle-plugin\", version.ref = \"secretsPlugin\" }\n\nrunique-android-application = { id = \"runique.android.application\", version = \"unspecified\" }\nrunique-android-application-compose = { id = \"runique.android.application.compose\", version = \"unspecified\" }\nrunique-android-library = { id = \"runique.android.library\", version = \"unspecified\" }\nrunique-android-library-compose = { id = \"runique.android.library.compose\", version = \"unspecified\" }\nrunique-android-feature-ui = { id = \"runique.android.feature.ui\", version = \"unspecified\" }\nrunique-android-room = { id = \"runique.android.room\", version = \"unspecified\" }\nrunique-jvm-library = { id = \"runique.jvm.library\", version = \"unspecified\" }\nrunique-jvm-ktor = { id = \"runique.jvm.ktor\", version = \"unspecified\" }\n\n[bundles]\n\ncompose = [\n    \"androidx-activity-compose\",\n    \"androidx-lifecycle-runtime-compose\",\n    \"androidx-lifecycle-viewmodel-compose\",\n    \"androidx-compose-material3\",\n    \"androidx-compose-ui\",\n    \"androidx-compose-ui-graphics\",\n    \"androidx-compose-ui-tooling-preview\"\n]\n\ncompose-debug = [\n    \"androidx-compose-ui-tooling\",\n    \"androidx-compose-ui-test-manifest\"\n]\n\nkoin = [\"koin-core\", \"koin-android\", \"koin-android-workmanager\"] # data layers\nkoin-compose = [\"koin-core\", \"koin-android\", \"koin-android-workmanager\", \"koin-androidx-compose\"] # presentation layers\n\nktor = [\n    \"ktor-client-auth\",\n    \"ktor-client-cio\",\n    \"ktor-client-content-negotiation\",\n    \"ktor-client-core\",\n    \"ktor-client-logging\",\n    \"ktor-serialization-kotlinx-json\"\n]
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/gradle/libs.versions.toml b/gradle/libs.versions.toml
+--- a/gradle/libs.versions.toml	(revision 3b087813b8bd8ddcbaa534106ff6505b455b2171)
++++ b/gradle/libs.versions.toml	(date 1754358925817)
+@@ -1,5 +1,5 @@
+ [versions]
+-agp = "8.2.2"
++agp = "8.3.2"
+ androidTools = "31.2.2"
+ core = "1.10.3"
+ playCore = "1.10.3"
+@@ -19,7 +19,7 @@
+ koin = "3.5.3"
+ lifecycleRuntimeKtx = "2.7.0"
+ composeBom = "2024.02.02"
+-materialIconsExtended = "1.6.3"
++materialIconsExtended = "1.6.1"
+ navigationCompose = "2.7.7"
+ securityCryptoKtx = "1.1.0-alpha06"
+ timber = "5.0.1"
+Index: core/presentation/designsystem/src/main/java/com/example/core/presentation/designsystem/Color.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/presentation/designsystem/src/main/java/com/example/core/presentation/designsystem/Color.kt b/core/presentation/designsystem/src/main/java/com/example/core/presentation/designsystem/Color.kt
+new file mode 100644
+--- /dev/null	(date 1754355447274)
++++ b/core/presentation/designsystem/src/main/java/com/example/core/presentation/designsystem/Color.kt	(date 1754355447274)
+@@ -0,0 +1,15 @@
++package com.example.core.presentation.designsystem
++
++import androidx.compose.ui.graphics.Color
++
++val RuniqueGreen = Color(0xFF00F15E)
++val RuniqueGreen30 = Color(0x4D00F15E)
++val RuniqueGreen10 = Color(0x1A00F15E)
++val RuniqueGreen5 = Color(0x0D00F15E)
++val RuniqueBlack = Color(0xFF080707)
++val RuniqueGray = Color(0xFF87938C)
++val RuniqueGray40 = Color(0x6687938C)
++val RuniqueDarkGray = Color(0xFF232624)
++val RuniqueWhite = Color(0xFFFAFAFA)
++val RuniqueDarkRed = Color(0xFFBB3D3D)
++val RuniqueDarkRed5 = Color(0x0DBB3D3D)
+\ No newline at end of file
